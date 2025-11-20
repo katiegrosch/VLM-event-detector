@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Event, EventFilters } from "./types";
 import { fetchEvents, saveReview, getZones, getDrivers } from "./api";
 import { Filters } from "./components/Filters";
@@ -8,7 +8,6 @@ import { ShareModal } from "./components/ShareModal";
 import { Truck } from "lucide-react";
 
 function App() {
-  const [events, setEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [filters, setFilters] = useState<EventFilters>({});
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -23,7 +22,6 @@ function App() {
       setLoading(true);
       try {
         const allEvents = await fetchEvents();
-        setEvents(allEvents);
         setFilteredEvents(allEvents);
         setZones(getZones());
         setDrivers(getDrivers());
@@ -57,10 +55,7 @@ function App() {
   ) => {
     const updatedEvent = await saveReview(eventId, humanLabel, notes);
     
-    // Update the event in all lists
-    setEvents((prev) =>
-      prev.map((e) => (e.id === eventId ? updatedEvent : e))
-    );
+    // Update the event in the filtered list
     setFilteredEvents((prev) =>
       prev.map((e) => (e.id === eventId ? updatedEvent : e))
     );
