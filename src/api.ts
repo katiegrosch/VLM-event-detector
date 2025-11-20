@@ -57,7 +57,7 @@ const generateMockEvents = (): Event[] => {
       humanLabel: hasHumanLabel ? issueTypes[Math.floor(Math.random() * issueTypes.length)] : undefined,
       confidence: Math.round((0.5 + Math.random() * 0.5) * 100) / 100,
       hasIssue: hasIssue,
-      videoUrl: `https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`, // Sample video
+      videoUrl: `https://drive.google.com/uc?export=download&id=11A5U8OgoG0zOKrz6ojfWS0fj2HEEgYP8`, // Google Drive video
       address: addresses[Math.floor(Math.random() * addresses.length)],
       notes: hasHumanLabel ? "Reviewed by ops manager" : undefined,
     });
