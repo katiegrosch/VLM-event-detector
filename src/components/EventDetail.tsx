@@ -106,14 +106,24 @@ ${notes ? `Details: ${notes}` : ""}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Video Player */}
           <div className="bg-gray-900 rounded-lg overflow-hidden">
-            <video
-              src={event.videoUrl}
-              controls
-              className="w-full"
-              style={{ maxHeight: "400px" }}
-            >
-              Your browser does not support the video tag.
-            </video>
+            {event.videoUrl.includes('drive.google.com') ? (
+              <iframe
+                src={event.videoUrl}
+                className="w-full"
+                style={{ height: "400px" }}
+                allow="autoplay"
+                title="Event Video"
+              />
+            ) : (
+              <video
+                src={event.videoUrl}
+                controls
+                className="w-full"
+                style={{ maxHeight: "400px" }}
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
 
           {/* Event Metadata */}
